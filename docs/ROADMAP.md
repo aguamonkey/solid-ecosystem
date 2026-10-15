@@ -1,9 +1,10 @@
 # Build in small connected milestones
 
-1. **Current: web → Python → durable observation.** Form, ordered ledger, exact replay/conflict handling, receipt preview, shared contract, local launcher, Compose definitions and automated checks.
-2. **Swift connected client.** Add a new native Field Notebook app; keep existing principle apps focused. First read/write flow, then persistent offline intent and recovery tests.
-3. **Rust connected collector.** Start with a file import, then a durable outbox and reconnect/retry demonstration. Develop the standalone Rust SOLID workbook separately as agreed.
-4. **Cross-client demonstration.** One observation visible in web/iOS; Rust batch import; controlled outages; contract compatibility checks for every implemented client.
-5. **Hosted demonstration.** Decide access policy and hosting budget, configure HTTPS/persistent storage/backups, deploy the API and web, and publish a reproducible recruiter walkthrough. iOS and the agent remain separately installed clients.
+1. **Implemented: web → Python → durable observation.** Capture, ledger, exact replay/conflict handling, receipt preview, API contract, launcher and Compose checks.
+2. **Current: cross-platform mobile client.** Expo / React Native for iOS and Android. Shared TypeScript HTTP package, capture and paging, one persisted pending submission with manual retry. Native installation and platform-specific testing remain explicit validation steps; bundling is not device execution.
+3. **Standalone Rust SOLID workbook.** Return to the separate learning repository before implementing the collector.
+4. **Rust connected collector.** File import, then durable queued intent, reconnect/retry and restart recovery.
+5. **Cross-client demonstration.** The same observations visible in web/mobile; Rust batch import; controlled outages; compatibility checks across all implemented clients.
+6. **Hosted demonstration.** Choose access policy/budget; configure HTTPS, persistent storage and backups; deploy API/web and document mobile/agent distribution.
 
-Do not describe planned components as running services. Do not add a message broker or service mesh until a measured requirement earns it.
+The Swift SOLID repository remains the native Apple-platform study project. This ecosystem deliberately uses TypeScript for web and cross-platform mobile, Python for the backend and Rust for collection. Four components do not require four languages.

@@ -118,7 +118,9 @@ test("mobile layout fits the viewport and marks future components honestly", asy
       () => document.documentElement.scrollWidth <= innerWidth,
     ),
   ).toBeTruthy();
-  await expect(page.getByText("Planned · not connected yet")).toHaveCount(1);
+  await expect(
+    page.getByText("Expo client · saved submission retries"),
+  ).toHaveCount(1);
   await expect(page.getByText("Planned · collector agent")).toHaveCount(1);
 });
 

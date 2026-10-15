@@ -1,0 +1,11 @@
+**/node_modules
+**/.venv
+**/dist
+**/dist-native
+**/.test-build
+**/.expo
+**/__pycache__
+**/*.egg-info
+**/test-results
+.git
+data

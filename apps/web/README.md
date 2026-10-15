@@ -1,6 +1,6 @@
 # Field Notebook dashboard
 
-TypeScript + Vite, with no UI framework needed for this first slice. `src/api.ts` owns HTTP and runtime response decoding; `src/main.ts` captures intent and renders DOM nodes. User-provided station/identity text is inserted through `textContent`.
+TypeScript + Vite, with no UI framework needed for this first slice. `src/api.ts` re-exports the shared  HTTP and runtime decoding package; `src/main.ts` captures intent and renders DOM nodes. User-provided station/identity text is inserted through `textContent`.
 
 Use the root `make dev` to run both web and API. `/api` always goes through a same-origin proxy; no permissive CORS configuration is required.
 

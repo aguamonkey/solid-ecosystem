@@ -17,13 +17,14 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-          cache-dependency-path: apps/web/package-lock.json
+          cache-dependency-path: package-lock.json
       - run: make setup PYTHON=python
       - run: services/api/.venv/bin/python -m pip check
       - run: make check
       - run: npx playwright install --with-deps chromium
         working-directory: apps/web
       - run: make browser
+      - run: npm run export:check --workspace @field-notebook/mobile
   compose:
     runs-on: ubuntu-latest
     steps:

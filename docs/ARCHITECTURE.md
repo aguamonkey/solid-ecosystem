@@ -5,11 +5,11 @@ flowchart LR
   W[TypeScript dashboard] -->|HTTP JSON| P[Same-origin proxy]
   P --> A[Python API]
   A --> D[(SQLite + pending receipt intent)]
-  I[Swift client · planned] -.->|HTTP JSON| P
+  I[Expo mobile · iOS + Android] -->|HTTP JSON| P
   R[Rust collector · planned] -.->|HTTP JSON| P
 ```
 
-Solid arrows are implemented. Dashed arrows are the roadmap. The web browser never opens SQLite; clients do not share a database.
+Solid arrows are implemented in source. Dashed arrows are the roadmap. Mobile bundle checks and device execution are separate verification levels. The web browser never opens SQLite; clients do not share a database.
 
 Python owns observation validity, uniqueness, durable request bindings and receipt intent. Reading/key/event writes form one SQLite transaction.
 Receipt preview delivery and acknowledgement are separate steps, so uncertainty can be recovered using a stable event identity.
@@ -37,3 +37,10 @@ Before public deployment: choose identity/access rules, HTTPS, a backup/restore 
 
 Keep the four principle workbooks independent. This monorepo owns the integrated product, shared API contract and cross-component checks. It does not depend on sibling folders, Git submodules or unversioned local packages.
 The Python backend was adapted from `solid-principles-python` commit `b38820a516ab92ece53ff84ebe1b09c5fcbdf1da` under MIT. The teaching repository and this product can evolve independently; no ongoing copy-sync is required.
+
+
+## Cross-platform client decision
+
+Swift depth stays in the existing native study repository. This product uses Expo/React Native to target iOS and Android with TypeScript. Browser and mobile consume a shared workspace package for HTTP/validation; platform-specific rendering and storage stay in their applications.
+The mobile persistence port holds exactly one immutable submission intent and its endpoint. Save precedes send; a matching acknowledgement precedes clear. Network errors, conflicts, and failed local clearing retain original intent. No reconnect scheduler or background-task promise is made.
+AsyncStorage is an adapter, not a dependency of the pending-submission policy. Tests simulate failed storage and a recreated policy instance. A native restart test is still a separate requirement.

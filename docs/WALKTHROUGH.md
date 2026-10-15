@@ -10,9 +10,20 @@
 
 ## Follow the code
 
-`apps/web/src/main.ts` captures intent → `apps/web/src/api.ts` sends/decodes HTTP → `services/api/src/field_notebook/http.py` maps HTTP → `policy.py` orchestrates → `sqlite_store.py` commits.
+`apps/web/src/main.ts` captures intent → `packages/notebook-client/src/index.ts` sends/decodes HTTP → `services/api/src/field_notebook/http.py` maps HTTP → `policy.py` orchestrates → `sqlite_store.py` commits.
 
 Explain what each layer owns before reading every line. Then find the matching boundary test in `services/api/tests/test_backend.py`.
 
 Interview prompt: **The database committed, but the client timed out. What should happen next, and what information must survive to make it safe?**
 Answer using a stable key, the original content, durable server bindings, and an explicit unconfirmed state. Do not promise exactly-once delivery across arbitrary external systems.
+
+
+## Add mobile to the journey
+
+1. Follow the mobile README to connect the correct simulator/emulator/device address.
+2. Submit a fresh identity from mobile, then Refresh the web dashboard. Both show the same server record.
+3. Stop the backend, submit another fresh identity in mobile, and observe its saved pending status.
+4. Restart the mobile app, then the backend. The original intent/destination should restore. Retry it manually; Refresh the dashboard and verify one record.
+5. Compare the mobile persistence port with web's tab-local state. Shared API rules do not erase different lifecycle requirements.
+
+Steps 3–4 are also a native device verification checklist; package-level restart tests alone do not substitute for running them on the target platforms.

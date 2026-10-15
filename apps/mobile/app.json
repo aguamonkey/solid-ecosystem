@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "Field Notebook",
+    "slug": "solid-field-notebook",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.aguamonkey.fieldnotebook"
+    },
+    "android": {
+      "package": "com.aguamonkey.fieldnotebook"
+    }
+  }
+}

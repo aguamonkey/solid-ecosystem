@@ -11,7 +11,9 @@ services:
       retries: 12
       start_period: 10s
   web:
-    build: ./apps/web
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
     ports:
       - "127.0.0.1:8080:80"
     depends_on:

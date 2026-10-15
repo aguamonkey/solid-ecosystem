@@ -12,3 +12,7 @@ data/
 playwright-report/
 test-results/
 .env
+.expo/
+dist-native/
+.test-build/
+*.tsbuildinfo

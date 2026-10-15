@@ -5,7 +5,7 @@ With the API environment installed, run `services/api/.venv/bin/python scripts/c
 After deliberate API changes, regenerate without `--check`, review the diff and update affected clients in the same pull request.
 
 The browser uses `/api` through Vite locally and Nginx in Compose. The service itself exposes `/readings`, etc.; the proxy strips `/api`.
-Native clients will use the public `/api` base URL. A simulator on this Mac can use `http://127.0.0.1:5180/api`; a physical device cannot use the Mac's loopback address.
+Mobile uses an explicitly configured API base URL (including `/api`). A simulator on this Mac can use `http://127.0.0.1:5180/api`; a physical device cannot use the Mac's loopback address.
 
 ## Submission rules
 
@@ -19,3 +19,5 @@ Native clients will use the public `/api` base URL. A simulator on this Mac can 
 - POST `/api/outbox/process` is one worker tick. A second tick may process a different event; it is not replay of a named HTTP operation. Receipts are local previews, not email.
 
 The web client decodes responses at runtime. Shared data formats do not require sharing language-specific domain classes.
+
+Web and mobile share the `packages/notebook-client` TypeScript workspace for DTOs and runtime decoding. Python remains the source of the OpenAPI contract.
