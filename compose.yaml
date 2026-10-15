@@ -1,0 +1,21 @@
+name: solid-ecosystem
+services:
+  api:
+    build: ./services/api
+    volumes:
+      - notebook-data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/ready', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+  web:
+    build: ./apps/web
+    ports:
+      - "127.0.0.1:8080:80"
+    depends_on:
+      api:
+        condition: service_healthy
+volumes:
+  notebook-data:
