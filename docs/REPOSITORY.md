@@ -17,6 +17,6 @@ Live GitHub refs were checked before the changes below:
 - `feature/cross-platform-mobile` points to the same commit as `develop`. It is a stale-branch candidate with no unique commits at the time of review. No branch was deleted or rewritten.
 - No other remote `feature/*` branches were returned by the live branch listing.
 
-The documentation polish is delivered as one commit on both `main` and `develop`, with the working checkout on `develop`. The retained feature branch stays at its original commit; it has no unique commits relative to `develop`. This note records the synchronization, not a policy that the branches must always stay identical.
+Documentation updates are published on both `main` and `develop`, with the working checkout on `develop`. The retained feature branch stays at its original commit; it has no unique commits relative to `develop`. This note records the synchronization, not a policy that the branches must always stay identical.
 
 CI runs on pushes and pull requests without a branch-name filter, so adopting `main` requires no workflow changes. A hosted demo remains planned.

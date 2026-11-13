@@ -2,6 +2,8 @@
 
 A cross-platform SOLID learning system: one example across web, API and mobile, with walkthroughs and tests.
 
+Follow one observation from capture to durable storage, then explore what happens when the response never reaches the client. The lessons connect each design principle to a concrete change, failure or test.
+
 **Status:** Implemented: web dashboard, FastAPI API with SQLite, React Native/Expo app, Docker setup and GitHub Actions CI. Planned: Rust collector and hosted demo. Native device testing is partial: an iOS simulator launch and iOS/Android bundles were checked; full native submission/restart/retry workflows and Android device execution remain unverified. See [verification scope](docs/VERIFICATION.md).
 
 **Video walkthrough:** TODO — add a short narrated walkthrough. The [GIF recording checklist](docs/RECORDING.md) covers submit → ledger → retry; the GIF is not recorded yet.
@@ -23,6 +25,18 @@ make setup && make dev
 ```
 
 If macOS selects an older Python, use `make setup PYTHON=python3.12 && make dev`. See the run sections below for persistence, shutdown and mobile setup.
+
+## Choose your route
+
+| Your goal | Start here | What you'll leave with |
+| --- | --- | --- |
+| Try the application | [First connected journey](docs/WALKTHROUGH.md) | A recorded observation, a replay and a recovered submission |
+| Learn the design | [Hands-on lesson](docs/LEARNING_GUIDE.md) | Predictions, observable results and a small exporter exercise with a reference solution |
+| Teach the system | [Workshop guide](docs/WORKSHOP.md) | A timed demonstration, discussion prompts and checks for understanding |
+| Integrate or diagnose | [API contract](contracts/README.md) and [troubleshooting](docs/TROUBLESHOOTING.md) | Request rules, symptom-based checks and useful diagnostic evidence |
+| Review the engineering | [Architecture](docs/ARCHITECTURE.md) and [verification](docs/VERIFICATION.md) | Code boundaries, trade-offs and the limits of the testing evidence |
+
+The hands-on lesson assumes basic HTTP/JSON knowledge and some Python or TypeScript. You do not need prior SOLID knowledge. Timings are estimates and exclude installation.
 
 ## What you'll learn
 
@@ -89,6 +103,9 @@ JavaScript dependencies use one root `package-lock.json` with npm workspaces. Ru
 ## Learn the system
 
 - [Guided walkthrough](docs/WALKTHROUGH.md): submit, inspect, retry, conflict, process, restart.
+- [Hands-on lesson](docs/LEARNING_GUIDE.md): predict outcomes, trace boundaries and extend an exporter.
+- [Workshop guide](docs/WORKSHOP.md): teach the lesson and gather feedback on where learners get stuck.
+- [Troubleshooting](docs/TROUBLESHOOTING.md): diagnose setup, requests and mobile connectivity.
 - [Architecture and SOLID map](docs/ARCHITECTURE.md): responsibilities, evidence and trade-offs.
 - [API contract](contracts/README.md): shared meanings across languages.
 - [Roadmap](docs/ROADMAP.md): mobile, Rust and eventual deployment.

@@ -1,12 +1,14 @@
 # Your first connected journey
 
+For learning objectives, predictions and an extension exercise, use the [hands-on lesson](LEARNING_GUIDE.md). If your results differ, follow [troubleshooting](TROUBLESHOOTING.md) before resetting data.
+
 1. Start the system using the root README. Open the dashboard.
 2. Enter identity `ridge-001`, station `North ridge`, Kelvin `281.25`. Record it. The ledger shows 8.10 °C; the API still stores 281.25 K.
 3. Open the API workbench. GET `/readings/ridge-001` confirms that same record.
 4. In the workbench, POST the same reading twice with the SAME `Idempotency-Key` (use a fresh identity, e.g. `workbench-001`). The first response is 201; the second is 200. Change Kelvin under that key: 409. Existing history stays unchanged.
 5. On the dashboard, process one receipt. This acknowledges one pending preview, not necessarily the last reading you entered. Repeat until empty.
 6. Stop and restart the system. Refresh: observations remain. Compose uses a named volume; native development uses ignored `data/notebook.sqlite3`. `docker compose down` preserves the volume; `down -v` deletes it.
-7. To explore uncertainty, stop the API, submit a NEW reading in the open dashboard, then restart the API. Click **Retry same submission**. The page retains key/content while open. Closing/reloading the tab loses that draft; durable client outboxes are a later milestone.
+7. To explore uncertainty, follow [the outage and retry steps](RECORDING.md#capture-checklist): stop the API in Compose (or block API requests in the browser for native development), submit a NEW reading in the open dashboard, then restore connectivity. Click **Retry same submission**. The page retains key/content while open. Closing/reloading the tab loses that draft; persisted web intent is a later milestone. Mobile already saves one pending intent.
 
 ## Follow the code
 
