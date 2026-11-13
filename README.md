@@ -6,7 +6,7 @@ Follow one observation from capture to durable storage, then explore what happen
 
 **Status:** Implemented: web dashboard, FastAPI API with SQLite, React Native/Expo app, Docker setup and GitHub Actions CI. Planned: Rust collector and hosted demo. Native device testing is partial: an iOS simulator launch and iOS/Android bundles were checked; full native submission/restart/retry workflows and Android device execution remain unverified. See [verification scope](docs/VERIFICATION.md).
 
-**Video walkthrough:** TODO — add a short narrated walkthrough. The [GIF recording checklist](docs/RECORDING.md) covers submit → ledger → retry; the GIF is not recorded yet.
+**Video walkthrough:** TODO — record the [5–7 minute script](docs/VIDEO_SCRIPT.md) with narration. The [GIF recording checklist](docs/RECORDING.md) covers submit → ledger → retry; the GIF is not recorded yet.
 
 ## Quick start
 
@@ -128,6 +128,8 @@ npm test
 The API suite tests memory/SQLite contracts, transactions, concurrent retries, restart recovery and HTTP responses. Browser tests exercise the real Python API through the web proxy, plus deliberate lost acknowledgements and unavailable reads. Their temporary database is isolated from development data.
 Shared client tests cover saved intent and uncertain retries. `make check` also typechecks mobile; CI exports both native bundles.
 CI also builds and smoke-checks the Compose stack. OpenAPI generation is checked for drift.
+
+[GitHub Actions](.github/workflows/ci.yml) runs on every push and pull request and supports manual runs. This is continuous integration; automatic deployment to a hosted environment is not configured. The [video script](docs/VIDEO_SCRIPT.md) explains how to present the checks and an optional code change.
 
 ## Related study repositories
 

@@ -2,6 +2,8 @@
 
 This is a facilitator plan and recording script, not evidence that a session has already been delivered. Installation happens beforehand. For individual study, use the [hands-on lesson](LEARNING_GUIDE.md).
 
+For a shorter portfolio recording with spoken wording and screen cues, use the [5–7 minute video script](VIDEO_SCRIPT.md). It includes the distinction between CI and deployment and an optional code-change follow-up.
+
 Audience: developers familiar with basic HTTP/JSON. Outcome: participants can distinguish an unconfirmed submission from a rejected one, preserve retry intent, and identify a testable design boundary.
 
 ## Prepare
