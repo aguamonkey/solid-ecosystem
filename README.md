@@ -1,8 +1,42 @@
 # Field Notebook · SOLID Ecosystem
 
-**One observation. Web, mobile and backend working together.**
+A cross-platform SOLID learning system: one example across web, API and mobile, with walkthroughs and tests.
 
-A connected learning and portfolio project: record observations, keep durable history, recover from uncertain acknowledgements, and study why the boundaries exist.
+**Status:** Implemented: web dashboard, FastAPI API with SQLite, React Native/Expo app, Docker setup and GitHub Actions CI. Planned: Rust collector and hosted demo. Native device testing is partial: an iOS simulator launch and iOS/Android bundles were checked; full native submission/restart/retry workflows and Android device execution remain unverified. See [verification scope](docs/VERIFICATION.md).
+
+**Video walkthrough:** TODO — add a short narrated walkthrough. The [GIF recording checklist](docs/RECORDING.md) covers submit → ledger → retry; the GIF is not recorded yet.
+
+## Quick start
+
+From this repository's root, choose one:
+
+```sh
+# Docker Engine/Desktop with Compose v2
+docker compose up --build -d --wait
+# Dashboard: http://127.0.0.1:8080 · API docs: http://127.0.0.1:8080/api/docs
+```
+
+```sh
+# Python 3.11+, Node 22.13+ (22 LTS) or 24.3+ (24 LTS), npm and make
+make setup && make dev
+# Dashboard: http://127.0.0.1:5180 · API docs: http://127.0.0.1:5180/api/docs
+```
+
+If macOS selects an older Python, use `make setup PYTHON=python3.12 && make dev`. See the run sections below for persistence, shutdown and mobile setup.
+
+## What you'll learn
+
+- **Single responsibility (SRP):** follow [HTTP mapping](services/api/src/field_notebook/http.py), [domain validation](services/api/src/field_notebook/domain.py), [policy](services/api/src/field_notebook/policy.py) and [SQLite storage](services/api/src/field_notebook/sqlite_store.py) as separate responsibilities.
+- **Open/closed (OCP):** add a renderer to the captured registry in [exports.py](services/api/src/field_notebook/exports.py) without changing `export_page`; see `test_new_exporter_uses_unchanged_export_policy` in the [backend tests](services/api/tests/test_backend.py).
+- **Liskov substitution (LSP):** compare [memory](services/api/src/field_notebook/memory.py) and [SQLite](services/api/src/field_notebook/sqlite_store.py) adapters against the same `StoreContract` in the [backend tests](services/api/tests/test_backend.py).
+- **Interface segregation (ISP):** inspect the focused `ReadingWriter`, `ReadingLookup`, `ReadingPager`, `ReceiptQueue` and `ReceiptSink` protocols in [ports.py](services/api/src/field_notebook/ports.py); export policy needs only a pager.
+- **Dependency inversion (DIP):** [policy.py](services/api/src/field_notebook/policy.py) accepts protocols, while [the executable](services/api/src/field_notebook/__main__.py) wires concrete adapters. On mobile, [pending-submission policy](packages/notebook-client/src/pending.ts) accepts a persistence port; the platform supplies storage.
+
+Start with the [guided walkthrough](docs/WALKTHROUGH.md), then use the [architecture and evidence map](docs/ARCHITECTURE.md) to explain the boundaries.
+
+**Language workbooks:** [Swift](https://github.com/aguamonkey/SOLID-Principles-with-Swift) · [TypeScript](https://github.com/aguamonkey/solid-principles-typescript) · [Python](https://github.com/aguamonkey/solid-principles-python) · [Rust](https://github.com/aguamonkey/solid-principles-rust).
+
+## At a glance
 
 | Component | Technology | Status |
 | --- | --- | --- |
@@ -62,6 +96,8 @@ JavaScript dependencies use one root `package-lock.json` with npm workspaces. Ru
 [Verification scope](docs/VERIFICATION.md) distinguishes bundles, tests and native execution.
 
 Dependency compatibility and unresolved upstream advisories are recorded in [dependency notes](docs/DEPENDENCIES.md).
+
+[Repository presentation notes](docs/REPOSITORY.md) include suggested GitHub metadata and the branch review.
 
 ## Check your changes
 
